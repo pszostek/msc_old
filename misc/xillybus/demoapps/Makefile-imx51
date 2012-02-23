@@ -1,0 +1,21 @@
+# Set up GNUPREFIX to point at your valid buildroot path!
+GNUPREFIX=/path/to/build/staging_dir/usr/bin/arm-unknown-linux-uclibcgnueabi-
+
+CC=$(GNUPREFIX)gcc
+AR=$(GNUPREFIX)ar
+AS=$(GNUPREFIX)as
+CXX=$(GNUPREFIX)g++
+LD=$(GNUPREFIX)ld
+STRIP=$(GNUPREFIX)strip
+
+CFLAGS=-g -Wall -O3
+
+APPLICATIONS=memwrite memread streamread streamwrite
+
+all: 	$(APPLICATIONS)
+
+%: 	%.c
+	$(CC)  $(CFLAGS) $@.c -o $@
+
+clean:
+	rm -f *~ $(APPLICATIONS)

@@ -1,0 +1,14 @@
+The Linux drivers (that is, kernel modules) are available for download as
+binaries, which can be used directly with kernel 2.6.38. It's also fairly
+likely that these binaries work with other kernel versions as well.
+
+In order to compile anything for the embedded processor, you'll need the GNU
+cross compiler toolchain running on your computer.
+
+See http://www.armadeus.com/wiki/index.php?title=Toolchain for how to set it
+up.
+
+Please refer to http://xillybus.com/ in the Documentation section for more
+information about how to compile and use these drivers on the i.MX51
+platform.
+

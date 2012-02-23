@@ -1,0 +1,32 @@
+# Makefile for 2.6 kernels
+
+# Fix CROSS_COMPILE and KDIR below to point at your valid buildroot paths!
+#
+export CROSS_COMPILE=/path/to/buildroot/output/build/staging_dir/usr/bin/arm-unknown-linux-uclibcgnueabi-
+
+ifneq ($(KERNELRELEASE),)
+obj-m	:= xillybus.o
+
+# The following line should be uncommented for supporting PCIe
+#EXTRA_CFLAGS += -DCONFIG_XILLYBUS_PCIE
+
+# The following line should be uncommented for supporting Open Firmware
+# (device tree) detection of devices (e.g. Microblaze)
+#EXTRA_CFLAGS += -DCONFIG_XILLYBUS_OF
+
+# The TWO following lines should be uncommented for supporting Armadeus'
+# APF51 platform (Freescale i.MX51 with SDMA code loaded)
+EXTRA_CFLAGS += -DCONFIG_XILLYBUS_APF51
+obj-m   += xillybus_sdma.o
+
+else
+KDIR := /path/to/buildroot/output/build/linux-2.6.38.1
+PWD := $(shell pwd)
+
+default:
+	$(MAKE) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KDIR) SUBDIRS=$(PWD) modules
+clean:
+	@rm -f *.ko *.o modules.order Module.symvers *.mod.? *~
+	@rm -rf .tmp_versions module.target
+	@rm -f .xillybus_sdma.* .xillybus.*
+endif
