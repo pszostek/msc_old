@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="distribution" content="global">
+<title>Designed to fail: Ethernet for FPGA-PC communication</title>
+<link rel="stylesheet" href="Designed%20to%20fail:%20Ethernet%20for%20FPGA-PC%20communication_pliki/style.css" type="text/css" media="screen" charset="utf-8">
+<link rel="alternate" type="application/rss+xml" title="my tech blog RSS Feed" href="http://billauer.co.il/blog/feed/">
+<link rel="pingback" href="http://billauer.co.il/blog/xmlrpc.php">
+	<link rel="archives" title="February 2012" href="http://billauer.co.il/blog/2012/02/">
+	<link rel="archives" title="December 2011" href="http://billauer.co.il/blog/2011/12/">
+	<link rel="archives" title="November 2011" href="http://billauer.co.il/blog/2011/11/">
+	<link rel="archives" title="October 2011" href="http://billauer.co.il/blog/2011/10/">
+	<link rel="archives" title="September 2011" href="http://billauer.co.il/blog/2011/09/">
+	<link rel="archives" title="August 2011" href="http://billauer.co.il/blog/2011/08/">
+	<link rel="archives" title="July 2011" href="http://billauer.co.il/blog/2011/07/">
+	<link rel="archives" title="June 2011" href="http://billauer.co.il/blog/2011/06/">
+	<link rel="archives" title="May 2011" href="http://billauer.co.il/blog/2011/05/">
+	<link rel="archives" title="April 2011" href="http://billauer.co.il/blog/2011/04/">
+	<link rel="archives" title="March 2011" href="http://billauer.co.il/blog/2011/03/">
+	<link rel="archives" title="February 2011" href="http://billauer.co.il/blog/2011/02/">
+	<link rel="archives" title="January 2011" href="http://billauer.co.il/blog/2011/01/">
+	<link rel="archives" title="December 2010" href="http://billauer.co.il/blog/2010/12/">
+	<link rel="archives" title="November 2010" href="http://billauer.co.il/blog/2010/11/">
+	<link rel="archives" title="October 2010" href="http://billauer.co.il/blog/2010/10/">
+	<link rel="archives" title="September 2010" href="http://billauer.co.il/blog/2010/09/">
+	<link rel="archives" title="August 2010" href="http://billauer.co.il/blog/2010/08/">
+	<link rel="archives" title="July 2010" href="http://billauer.co.il/blog/2010/07/">
+	<link rel="archives" title="June 2010" href="http://billauer.co.il/blog/2010/06/">
+	<link rel="archives" title="April 2010" href="http://billauer.co.il/blog/2010/04/">
+	<link rel="archives" title="March 2010" href="http://billauer.co.il/blog/2010/03/">
+	<link rel="archives" title="February 2010" href="http://billauer.co.il/blog/2010/02/">
+	<link rel="archives" title="January 2010" href="http://billauer.co.il/blog/2010/01/">
+	<link rel="archives" title="December 2009" href="http://billauer.co.il/blog/2009/12/">
+	<link rel="archives" title="October 2009" href="http://billauer.co.il/blog/2009/10/">
+	<link rel="archives" title="September 2009" href="http://billauer.co.il/blog/2009/09/">
+	<link rel="archives" title="July 2009" href="http://billauer.co.il/blog/2009/07/">
+	<link rel="archives" title="May 2009" href="http://billauer.co.il/blog/2009/05/">
+	<link rel="archives" title="April 2009" href="http://billauer.co.il/blog/2009/04/">
+	<link rel="archives" title="March 2009" href="http://billauer.co.il/blog/2009/03/">
+	<link rel="archives" title="February 2009" href="http://billauer.co.il/blog/2009/02/">
+<link rel="alternate" type="application/rss+xml" title="my tech blog » Designed to fail: Ethernet for FPGA-PC communication Comments Feed" href="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://billauer.co.il/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://billauer.co.il/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="my tech blog" href="http://billauer.co.il/blog/">
+<link rel="start" title="Xilinx FPGA MPPR script" href="http://billauer.co.il/blog/2009/02/xilinx-fpga-mppr-script/">
+<link rel="prev" title="Linux / Gnome: Turning two extra mouse buttons into Copy/Paste commands" href="http://billauer.co.il/blog/2011/11/mouse-buttons-binding-copy-paste/">
+<link rel="next" title="Turn off WordPress trackbacks. For good" href="http://billauer.co.il/blog/2011/12/turn-off-wordpress-trackbacks-for-good/">
+<meta name="generator" content="WordPress 3.1.2">
+<link rel="canonical" href="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/">
+<link rel="shortlink" href="http://billauer.co.il/blog/?p=2400">
+</head>
+<body>
+<div id="container"><!--container-->
+	<div id="topbar"><!--toolbar-->
+		<ul>
+		<li><a href="http://billauer.co.il/" title="Home" id="home">Home</a></li>
+		<li class="page_item page-item-2"><a href="http://billauer.co.il/cv.html" title="My CV">My CV</a></li>
+		<li class="page_item page-item-2"><a href="http://billauer.co.il/blog/" title="Blog's home">Blog's home</a></li>
+
+		<li class="page_item page-item-2"><a href="http://billauer.co.il/blog/about/" title="About">About</a></li>
+		</ul>
+	</div><!--/toolbar-->
+	<div id="header" onclick="location.href='http://billauer.co.il/cv.html';"><!--header-->
+	<h1><a href="http://billauer.co.il/blog/">my tech blog</a></h1>
+	<small>Anything I found worthy to write down.</small>
+    </div><!--/header--><!-- Left Sidebar-->
+<div style="float: left">
+<div id="sidebar_l" class="sidebar">
+
+<!-- Enter Google Adsense Link Unit Here -->
+<!-- Enter Google Adsense Leadebar Image Ads -->
+<!-- Enter Google Adsense Skypaker Image Ads Here -->
+
+<div class="sidebar_box">
+	<h4>Popular Posts</h4>
+	<ul>
+			<li>
+		<a href="http://billauer.co.il/blog/2012/02/pcie-usb-ezusb-marvell-alaska/" title="An FPGA-based PCI Express peripheral for Windows: It's easy">An FPGA-based PCI Express peripheral for Windows: It's easy</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/" title="Designed to fail: Ethernet for FPGA-PC communication">Designed to fail: Ethernet for FPGA-PC communication</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/03/pci-express-tlp-pcie-primer-tutorial-guide-1/" title="Down to the TLP: How PCI express devices talk (Part I)">Down to the TLP: How PCI express devices talk (Part I)</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/03/pci-express-tlp-pcie-primer-tutorial-guide-2/" title="Down to the TLP: How PCI express devices talk (Part II)">Down to the TLP: How PCI express devices talk (Part II)</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/04/pcie-pci-express-tlp-xilinx-fpga-linux-pc-embedded-x86-arm-spartan/" title="PCI express from a Xilinx FPGA to a Linux machine: Making it easy">PCI express from a Xilinx FPGA to a Linux machine: Making it easy</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/09/linux-fpga-distro-microblaze-spartan-xilinx/" title="Download a Linux distribution for Xilinx' Microblaze">Download a Linux distribution for Xilinx' Microblaze</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/07/pc-104-embedded-pc-fpga-usb-ethernet/" title="Embedded PC talking with an FPGA: Make it simple">Embedded PC talking with an FPGA: Make it simple</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/10/imx51-imx-weim-freescale-arm-bus/" title="i.MX51 EIM bus clarified">i.MX51 EIM bus clarified</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/07/chipscope-logic-analyzer-sniffing-probe-debug-hardware-verification-validation/" title="" fpga-printf":="" when="" chipscope="" isn't="" fast="" or="" deep="" enough"="">"FPGA-printf": When Chipscope isn't fast or deep enough</a>
+		</li>
+				<li>
+		<a href="http://billauer.co.il/blog/2011/08/linux-microblaze-howto-tutorial-primer-1/" title="Linux on Microblaze HOWTO (part I)">Linux on Microblaze HOWTO (part I)</a>
+		</li>
+			</ul>
+</div>
+
+<div class="sidebar_box">
+		<h4>Latest Posts</h4>
+		<ul>
+				<li><a href="http://billauer.co.il/blog/2012/02/pcidrv-irp-race-cancel/" title="A dissection of WDK’s PCIDRV sample driver’s IRP juggling">A dissection of WDK’s PCIDRV sample driver’s IRP juggling</a></li>
+	<li><a href="http://billauer.co.il/blog/2012/02/pcie-usb-ezusb-marvell-alaska/" title="An FPGA-based PCI Express peripheral for Windows: It’s easy">An FPGA-based PCI Express peripheral for Windows: It’s easy</a></li>
+	<li><a href="http://billauer.co.il/blog/2012/02/bsod-msi-interrupt-wdk/" title="Bug check on IoConnectInterruptEx()">Bug check on IoConnectInterruptEx()</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/12/xilinx-virtex-5-pci-express-endpoint-plus/" title="Virtex-5 PCIe endpoint block plus: Stay away from v1.15">Virtex-5 PCIe endpoint block plus: Stay away from v1.15</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/12/verilog-shift-calculated-xst/" title="Verilog and bit shifting (‘’): Don’t push your luck">Verilog and bit shifting (‘’): Don’t push your luck</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/12/turn-off-wordpress-trackbacks-for-good/" title="Turn off WordPress trackbacks. For good">Turn off WordPress trackbacks. For good</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/" title="Designed to fail: Ethernet for FPGA-PC communication">Designed to fail: Ethernet for FPGA-PC communication</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/11/mouse-buttons-binding-copy-paste/" title="Linux / Gnome: Turning two extra mouse buttons into Copy/Paste commands">Linux / Gnome: Turning two extra mouse buttons into Copy/Paste commands</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/11/fc12-x86_64-opengl-radeon-howto/" title="Enabling openGL 3D rendering on Fedora 12">Enabling openGL 3D rendering on Fedora 12</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/11/imx-sdma-assembler-example/" title="Examples of SDMA-assembler for Freescale i.MX51">Examples of SDMA-assembler for Freescale i.MX51</a></li>
+		</ul>
+</div>
+
+<!-- Widgetized left sidebar -->
+	<!--/Widgetized left sidebar -->
+
+<div class="sidebar_box">
+	<h4>Archives</h4>
+	 <ul>
+		 	<li><a href="http://billauer.co.il/blog/2012/02/" title="February 2012">February 2012</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/12/" title="December 2011">December 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/11/" title="November 2011">November 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/10/" title="October 2011">October 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/09/" title="September 2011">September 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/08/" title="August 2011">August 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/07/" title="July 2011">July 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/06/" title="June 2011">June 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/05/" title="May 2011">May 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/04/" title="April 2011">April 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/03/" title="March 2011">March 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/02/" title="February 2011">February 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2011/01/" title="January 2011">January 2011</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/12/" title="December 2010">December 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/11/" title="November 2010">November 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/10/" title="October 2010">October 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/09/" title="September 2010">September 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/08/" title="August 2010">August 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/07/" title="July 2010">July 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/06/" title="June 2010">June 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/04/" title="April 2010">April 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/03/" title="March 2010">March 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/02/" title="February 2010">February 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2010/01/" title="January 2010">January 2010</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/12/" title="December 2009">December 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/10/" title="October 2009">October 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/09/" title="September 2009">September 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/07/" title="July 2009">July 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/05/" title="May 2009">May 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/04/" title="April 2009">April 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/03/" title="March 2009">March 2009</a></li>
+	<li><a href="http://billauer.co.il/blog/2009/02/" title="February 2009">February 2009</a></li>
+	 </ul>
+</div>
+</div>
+<!-- Left Sidebar-->
+</div> <!--**** fix for IE6 left Float div bug *-->
+	<div id="content"><!--content-->
+				<div class="entry"><!-- Entry -->
+		<h1 class="post-title"><a href="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/" rel="bookmark">Designed to fail: Ethernet for FPGA-PC communication</a></h1>
+		<!-- Post Author and Post Date -->
+		<div id="postmeta">This post was written by <a href="http://www.billauer.co.il/">eli</a> on November 30, 2011		<br>
+		Posted Under: <a href="http://billauer.co.il/blog/category/fpga/" title="View all posts in FPGA" rel="category tag">FPGA</a>		</div>
+		<!--/Post Author and Post Date -->
+		<h3>Just lucky?</h3>
+<p>I’ve been approached a few times with requests to design the FPGA 
+part of an FPGA-to-PC link over Ethernet. The purpose of the link is 
+typically transporting a large amount of data to the PC. The application
+ varies from continuous data acquisition to frame grabbing or transport 
+of a raw video image stream. What these applications have in common, is 
+that the client expects a reliable, easy-to-implement data channel. Just
+ send the packets to the broadcast MAC address, and you’re done.</p>
+<p>When doubting the reliability of this solution, I usually get 
+the&nbsp; “I know from previous projects that it works” argument. I 
+can’t argue with their previous success. But there’s a subtle difference
+ between “it works” and “it’s guaranteed to work”. To a serious FPGA 
+engineer, that’s the difference between “maybe I was lucky this time” 
+and “this is a project I’m ready to release”.</p>
+<h3>Ethernet is inherently unreliable</h3>
+<p>The most important thing to know about Ethernet (in any data rate) is
+ that is was never meant to be reliable. As a physical layer for 
+networks, the underlying assumption is that a protocol layer detects 
+packet drops and issues retransmissions as necessary. Put simply, this 
+means that an Ethernet chip that drops a packet every now and then is 
+considered 100% OK.</p>
+<p>Since packet losses cause a certain data rate performance hit (e.g. 
+TCP/IP streams will be halted for a short period), efforts are made to 
+keep them to a minimum. For example, the Ethernet 802.3 standard states 
+10<sup>-10</sup> as the objective for the raw bit error rate on a copper
+ wire Gigabit Ethernet link (1000BASE-T, see section 40.1.1). That means
+ that a packet drop every 10 seconds is considered within the standard’s
+ objectives. Packet drops may also occur on the operating system level: 
+The network stack may take the freedom to drop packets just because they
+ didn’t arrive at a good time. This happens less when the computer is 
+generally idle (i.e. in the lab) but may become more evident under load 
+(that is, in real-life use).</p>
+<h3>Prototype vs. production</h3>
+<p>Engineers are often mislead to think that the link is reliable 
+because they can’t see any packet drops on the particular prototype 
+they’re working on. It’s also easy to overlook sporadic packet drops 
+during the development stages. The problem becomes serious when reaching
+ the production stage, when a no-errors system needs to be put on the 
+table. Even worse, production copies of the system may suddenly start to
+ fail once in a few hours or so. The QA tests may not spot these issues,
+ so the complaints may come from end-users feeling there’s something 
+wrong with their devices, which the vendor has no clue about. I mean, 
+imagine your car’s dashboard going crazy for a second once a month, and 
+the vendor insisting on that being impossible. Would you stay with that 
+car?</p>
+<h3>Working it around</h3>
+<p>The natural way to work around Ethernet packet drops is either 
+accepting the data loss or implementing a retransmission mechanism.</p>
+<p>Living with the data loss is possible in e.g. one-shot data 
+acquisition applications, when the trigger is recurrent. Say, if a 
+single frame is grabbed from a video stream, and it’s OK to fail on the 
+first attempt, that’s fine. As long as nobody feels the unexpected delay
+ of 1/30th of a second.</p>
+<p>Retransmissions may be significantly trickier, in particular if the 
+data goes from the FPGA to the PC. The thing is, that it will take some 
+time for the PC to respond on the lost packet, and that time may be 
+unlimited. For example, in today’s Linux implementations, the analysis 
+of network packets is done in a tasklet context, and not by the 
+interrupt service routine. Since tasklets are merely scheduled as a 
+high-priority process, the latency until the packets are analyzed 
+closely enough to detect a packet loss depends on how busy the computer 
+is at that time.</p>
+<p>One could hack the Ethernet card’s device driver to check a special 
+field in each packet (say, a counter).&nbsp; Let’s say that the packet 
+interrupt is handled within 10 μs, and that the packet loss is reported 
+back to the FPGA in no time.&nbsp; This means it has to store 10 kbits 
+worth of  previous packets (at least) to support a Gigabit link. 
+Actually, that’s  fine. A Xilinx FPGA’s internal RAM is more or less of 
+that size. Too bad it’s not realistic.</p>
+<p>And that’s because the underlying assumption of 10 μs response time 
+is problematic, since any other kernel component can turn off interrupts
+ while minding its own business (typically holding a spinlock). This 
+other component could be completely unrelated to the Ethernet 
+application (a sound card driver?) and not be active at all when the 
+link with the FPGA is tested in QA. And it could be something not 
+happening very often, so the sudden high latency becomes a rare bug to 
+handle.</p>
+<p>So taking a more realistic approach, it’s more like storing several 
+megabytes of data to make sure all packets stay in memory until their 
+safe arrival has been confirmed. This involves a controller for an 
+external memory (a DDR SDRAM, I suppose) and some nontrivial state 
+machine for keeping track of the packet traffic. While meeting the 
+requirement of being reliable, it’s not really easy to implement. Well, 
+easy to implement on a computer, which is the natural user of an 
+Ethernet link. Not an FPGA.</p>
+<h3>The right way to do it</h3>
+<p>The correct thing to do, is to use a link which was originally 
+intended for communication between a computer and its peripheral. 
+Several interfaces exist, but today the most appealing one is PCI 
+Express, as it’s expected to be supported for many years ahead. Being 
+the successor of good old PCI, its packet relay interface guarantees 
+true reliability, which is assured by the PCIe fabric’s hardware.</p>
+<p>The PCIe solution is often avoided because of the complexity of 
+setting up the FPGA logic for transmission over the bus. This is no 
+excuse in situations where <a href="http://xillybus.com/">Xillybus</a> 
+fits the scenario, as it provides a simple interface on both sides for 
+transmission of data between an FPGA and its Linux host. If that’s not 
+the case, the two choices are either to suck it up and write the PCIe 
+interface yourself, or revert to using Ethernet, hoping for the best.</p>
+<h3>Summary</h3>
+<p>I always say that it’s fairly easy to get an FPGA doing what you want
+ on a lab prototype. There are a lot of engineers not asking for too 
+much money out there, who will do that for you. But when it comes to 
+designing the system so it’s guaranteed to work, that’s a whole 
+different story. That includes using correct design techniques in the 
+FPGA logic’s HDL, constraining the timing correctly, ensuring that the 
+timing requirements of the surrounding hardware are met, as defined in 
+their datasheets etc. The difference isn’t seen at the prototype level, 
+so quick and dirty FPGA work gets away with it in the beginning. It’s 
+during the later stages, when temperature checks are run and the 
+electronics is being duplicated, that things start to happen.</p>
+<p>At that point people tend to blame the FPGA for being an unreliable 
+solution. Others adopt mystic rules such as the 9o%-10% rule, basically 
+saying that the real work starts in the last phase.</p>
+<p>But the truth is that that if you got it right in the first place, 
+there’s no reason why things should go wrong during production. If the 
+prototype was done professionally, turning it into a product is really 
+not a big deal. And having said that, yes, sometimes people do 
+everything wrong, and just turn out lucky.</p>
+<p>As for using Ethernet as a reliable link, it all boils down to if you want to gamble on it.</p>
+		<!-- Post Tags -->
+		<div id="postmeta">
+		<!-- <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:dc="http://purl.org/dc/elements/1.1/"
+			xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/"
+    dc:identifier="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/"
+    dc:title="Designed to fail: Ethernet for FPGA-PC communication"
+    trackback:ping="http://billauer.co.il/blog/2011/11/gigabit-ethernet-fpga-xilinx-data-acquisition/trackback/" />
+</rdf:RDF> -->
+		</div>
+		</div>
+		<!--/entry-->
+		<!-- Rader Comments -->
+				 <div id="addcomment">
+<h4 id="respond">Add a Comment</h4>
+<form action="http://billauer.co.il/blog/wp-comments-post.php" method="post" id="commentform">
+     <div class="form-item">
+  		<label for="comment-name">Name</label>
+  		<input name="author" id="comment-name" type="text">
+  		<span class="desc">required, use real name</span> 
+  	</div>
+  	<div class="form-item" style="width:170px;">
+			<label for="comment-email">Email</label>
+			<input name="email" id="comment-email" type="text">
+			<span class="desc">required, will not be published</span> 
+  	</div>
+  	<div class="form-item" style="width: 156px;">
+			<label for="comment-url">Website address</label>
+			<input name="url" id="comment-url" type="text">
+			<span class="desc">optional, your blog address</span> 
+		</div>
+    <div class="clear"></div>
+<textarea name="comment" rows="8" cols="40"></textarea>
+<p><input name="submit" id="comment-submit" tabindex="5" value="Submit Comment" type="submit">
+<input name="comment_post_ID" value="2400" type="hidden"></p>
+</form>
+<script language="JavaScript" type="text/javascript">
+document.getElementById("commentform").action = "http://billauer.co.il/blog/" + "wp-comments-post" + "-real." + "php";
+</script>
+</div><!--/addcomment-->
+		<!-- Comment Form -->
+				<!-- Previouse and Next Post -->
+		<div id="single_post_nav"><!-- post navigation -->
+			<div class="back">Next Post: <strong><a href="http://billauer.co.il/blog/2011/12/turn-off-wordpress-trackbacks-for-good/" rel="next">Turn off WordPress trackbacks. For good</a></strong></div>
+			<div class="fwrd">Previose Post: <strong><a href="http://billauer.co.il/blog/2011/11/mouse-buttons-binding-copy-paste/" rel="prev">Linux / Gnome: Turning two extra mouse buttons into Copy/Paste commands</a></strong></div>
+		</div><!--/post navigation -->
+	</div><!--/content-->
+<!-- Right Sidebar-->
+<div id="sidebar_r" class="sidebar">
+
+	<!-- Widgetized right sidebar -->
+			<!--/Widgetized right sidebar -->
+
+	<div class="sidebar_box">
+	<h4>Quick links</h4>
+		<ul>
+		<li><a href="http://www.billauer.co.il/" title="This site’s home page">My home page</a></li>
+<li><a href="http://www.billauer.co.il/cv.html" title="My CV" target="_blank">My résumé</a></li>
+<li><a href="http://xillybus.com/">Xillybus</a></li>
+		</ul>
+	</div>
+
+	<div class="sidebar_box">
+		<h4>Categories</h4>
+		<ul>
+					<li class="cat-item cat-item-152"><a href="http://billauer.co.il/blog/category/arm/" title="View all posts filed under ARM">ARM</a>
+</li>
+	<li class="cat-item cat-item-150"><a href="http://billauer.co.il/blog/category/drupal/" title="View all posts filed under Drupal">Drupal</a>
+</li>
+	<li class="cat-item cat-item-146"><a href="http://billauer.co.il/blog/category/electronics/" title="View all posts filed under electronics">electronics</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://billauer.co.il/blog/category/fpga/" title="View all posts filed under FPGA">FPGA</a>
+</li>
+	<li class="cat-item cat-item-123"><a href="http://billauer.co.il/blog/category/gimp/" title="View all posts filed under gimp">gimp</a>
+</li>
+	<li class="cat-item cat-item-56"><a href="http://billauer.co.il/blog/category/internet/" title="View all posts filed under Internet">Internet</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://billauer.co.il/blog/category/linux/" title="View all posts filed under Linux">Linux</a>
+</li>
+	<li class="cat-item cat-item-148"><a href="http://billauer.co.il/blog/category/linux-kernel/" title="View all posts filed under Linux kernel">Linux kernel</a>
+</li>
+	<li class="cat-item cat-item-151"><a href="http://billauer.co.il/blog/category/microblaze/" title="View all posts filed under Microblaze">Microblaze</a>
+</li>
+	<li class="cat-item cat-item-69"><a href="http://billauer.co.il/blog/category/microsoft/" title="View all posts filed under Microsoft">Microsoft</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://billauer.co.il/blog/category/misc/" title="View all posts filed under miscellaneous">miscellaneous</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://billauer.co.il/blog/category/mysql/" title="View all posts filed under MySQL">MySQL</a>
+</li>
+	<li class="cat-item cat-item-130"><a href="http://billauer.co.il/blog/category/oddities/" title="View all posts filed under oddities">oddities</a>
+</li>
+	<li class="cat-item cat-item-145"><a href="http://billauer.co.il/blog/category/offtopic/" title="View all posts filed under offtopic">offtopic</a>
+</li>
+	<li class="cat-item cat-item-147"><a href="http://billauer.co.il/blog/category/pci-express/" title="View all posts filed under PCI express">PCI express</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="http://billauer.co.il/blog/category/perl/" title="View all posts filed under perl">perl</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://billauer.co.il/blog/category/signal/" title="View all posts filed under Signal Processing">Signal Processing</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://billauer.co.il/blog/category/software/" title="View all posts filed under Software">Software</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://billauer.co.il/blog/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-144"><a href="http://billauer.co.il/blog/category/virtualization/" title="View all posts filed under Virtualization">Virtualization</a>
+</li>
+	<li class="cat-item cat-item-153"><a href="http://billauer.co.il/blog/category/windows-device-drivers/" title="View all posts filed under Windows device drivers">Windows device drivers</a>
+</li>
+		</ul>
+	</div>
+
+	<div class="sidebar_box">
+		<h4>Meta</h4>
+		<ul>
+				<li><a href="http://billauer.co.il/blog/wp-login.php">Log in</a></li>
+				</ul>
+	</div>
+
+</div>
+<!-- Right Sidebar--><div id="footer">
+<span style="float:left;text-align:right;">
+<a href="#container" title="Jump to Top" id="top">Jump to Top</a>
+</span>
+<!-- Please Do Not Remove Author And Theme Link. This Theme is released under GPL License -->
+© 2008 my tech blog | <a href="http://www.blogsdna.com/cognoblue-wordpress-theme" title="CognoBlue WordPress Theme">CognoBlue WordPress Theme</a> By <a href="http://www.blogsdna.com/" title="BlogsDNA"><strong>Blogsdna</strong></a> | Powered by <a href="http://www.wordpress.org/" title="WordPress">WordPress</a>
+
+<!--Enter Your Tracking Code Here -->
+</div></div><!--/Container-->
+
+</body></html>
